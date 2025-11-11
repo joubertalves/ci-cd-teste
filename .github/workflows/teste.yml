@@ -1,12 +1,4 @@
-name: Teste CI
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# ... (O cabeçalho e 'jobs' permanecem iguais)
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -16,5 +8,11 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Instalar dependências  # NOVO STEP 1
+        run: pip install pytest
+
+      - name: Executar testes  # NOVO STEP 2
+        run: pytest -v
+        
       - name: Executar script
         run: python main.py
